@@ -3,7 +3,7 @@
 ;; Copyright (c) 2023, 2024 Simon Johnston
 
 ;; Author: Simon Johnston <johnstonskj@gmail.com>
-;; Version: 0.1.3
+;; Version: 0.1.4
 ;; Package-Requires: ((emacs "28.2") (flycheck "32") (tree-sitter "0.18.0") (tsc "0.18.0") (dash "2.9.1") (sdml-mode "0.1.6"))
 ;; URL: https://github.com/johnstonskj/emacs-sdml-mode
 ;; Keywords: languages tools

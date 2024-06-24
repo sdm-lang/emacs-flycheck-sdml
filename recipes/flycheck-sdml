@@ -1,0 +1,3 @@
+(flycheck-sdml :fetcher github
+               :repo "sdm-lang/emacs-flycheck-sdml"
+               :files ("flycheck-sdml.el"))

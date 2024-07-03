@@ -1,15 +1,15 @@
 ;;; flycheck-sdml.el --- Use Flycheck to run sdml-lint -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2023, 2024 Simon Johnston
-
 ;; Author: Simon Johnston <johnstonskj@gmail.com>
-;; Version: 0.1.5snapshot
-;; Package-Requires: ((emacs "28.2") (flycheck "32") (tree-sitter "0.18.0") (tsc "0.18.0") (dash "2.9.1") (sdml-mode "0.1.6"))
+;; Version: 0.1.5
+;; Package-Requires: ((emacs "28.2") (flycheck "32") (tree-sitter "0.18.0") (tsc "0.18.0") (dash "2.9.1") (sdml-mode "0.1.8"))
 ;; URL: https://github.com/johnstonskj/emacs-sdml-mode
 ;; Keywords: languages tools
 
 ;;; License:
 
+;; Copyright (c) 2023, 2024 Simon Johnston
+;;
 ;; Licensed under the Apache License, Version 2.0 (the "License");
 ;; you may not use this file except in compliance with the License.
 ;; You may obtain a copy of the License at
@@ -77,7 +77,7 @@
      "([(entity_def name: (identifier) @name) (structure_def name: (identifier) @name) (event_def name: (identifier) @name) (enum_def name: (identifier) @name) (union_def name: (identifier) @name)] (#match? @name \"^[[:lower:]]\"))")
     ;; ----------------------------------------------------------------------
     (annotation-string-no-language
-     "Annotation strings should always include a language identifier"
+     "Annotation strings should include a language identifier"
      warning
      ,(concat "(annotation_property value: (value (simple_value (string !language) @string)))"
               "(annotation_property value: (value (sequence_of_values (simple_value (string !language) @string))))"))
@@ -104,9 +104,9 @@
      "(type_reference (builtin_simple_type) @type)")
     ;; ----------------------------------------------------------------------
     (member-cardinality
-     "By-value member cardinality is the default and may be removed"
+     "The specified cardinality is the default, it may be removed"
      info
-     "((member cardinality: (cardinality_expression) @card) (#eq? @card \"{1..}\"))"))
+     "((member_def cardinality: (cardinality_expression) @card) (#eq? @card \"{1}\"))"))
   "SDML lint rules for Flycheck, these use tree-sitter queries to select issues."
   :tag "Lint rules for Flycheck."
   :type '(repeat (list (symbol :tag "Identifier")
@@ -201,19 +201,25 @@ You can edit the rules checked by the linter, by customizing the variable
 ;;  :predicate (lambda () sdml-mode))
 
 ;; --------------------------------------------------------------------------
-;; Setup function
+;; Flycheck Minor Mode
 ;; --------------------------------------------------------------------------
 
 ;;;###autoload
-(defun flycheck-sdml-setup ()
-  "Setup SDML in Flycheck.
-
-Add `sdml' to `flycheck-checkers'."
-  (interactive)
+(define-minor-mode
+  sdml-flycheck-mode
+  "Minor mode to provide flycheck integration for SDML buffers."
+  :group 'sdml
+  :tag "Enable SDML flycheck minor mode"
+  :lighter nil
   ;; We should avoid raising any error in this function, as in combination
   ;; with `global-flycheck-mode' it will render Emacs unusable.
   (with-demoted-errors "Error in flycheck-sdml-setup: %S"
-    (add-to-list 'flycheck-checkers 'sdml)))
+    (add-to-list 'flycheck-checkers 'sdml))
+
+  (flycheck-mode))
+
+;;;###autoload
+(add-hook 'sdml-mode-hook #'sdml-flycheck-mode)
 
 (provide 'flycheck-sdml)
 

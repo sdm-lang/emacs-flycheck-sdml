@@ -35,7 +35,7 @@ The following uses `use-package` but any equivalent package manager should work.
 
 To enable, simply ensure Flycheck mode is enabled for your buffer. Rather than
 per-buffer, you can enable this by setting `flycheck-mode` for all SDML files with
-a hook.
+a hook, or you can use a global flycheck mode.
 
 ```elisp
 (use-package flycheck-sdml

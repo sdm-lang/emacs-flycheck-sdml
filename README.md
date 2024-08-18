@@ -2,13 +2,11 @@
 
 ![SDML Logo Text](https://raw.githubusercontent.com/sdm-lang/.github/main/profile/horizontal-text.svg)
 
-This package provides an Emacs tree-sitter based minor mode for SDML - the
-[Simple Domain Modeling Language](https://github.com/johnstonskj/tree-sitter-sdml). This mode provides a [`flycheck`](https://github.com/flycheck/flycheck) back-end that runs
-lint rules on open buffers.
+This package provides a [`flycheck`](https://github.com/flycheck/flycheck) back-end for SDML ([Simple Domain Modeling
+Language](https://github.com/johnstonskj/tree-sitter-sdml)) buffers.
 
-The current implementation uses tree-sitter queries directly and a set of rules
-in the custom variable `sdml-lint-rules`. Future versions may provide the option
-to use the SDML command-line tool for validation instead.
+The implementation uses the SDML command-line tool to perform the validation
+checks.
 
 ## Installing
 
@@ -43,8 +41,6 @@ a hook, or you can use a global flycheck mode.
   :load-path "/path/to/repo"
   :hook (sdml-mode . flycheck-mode)
 ```
-
-The entire set of lint rules are stored in the custom variable `sdml-lint-rules`.
 
 ## Contributing
 

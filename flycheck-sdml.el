@@ -1,7 +1,7 @@
 ;;; flycheck-sdml.el --- Use Flycheck to run sdml-lint -*- lexical-binding: t; -*-
 
 ;; Author: Simon Johnston <johnstonskj@gmail.com>
-;; Version: 0.1.6
+;; Version: 0.1.7snapshot
 ;; Package-Requires: ((emacs "28.2") (flycheck "32") (dash "2.9.1") (sdml-mode "0.1.8"))
 ;; URL: https://github.com/johnstonskj/emacs-sdml-mode
 ;; Keywords: languages tools

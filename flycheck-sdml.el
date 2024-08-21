@@ -126,9 +126,6 @@ CHECKER is this checker, and CALLBACK is the flycheck dispatch function."
 
   (flycheck-mode))
 
-;;;###autoload
-(add-hook 'sdml-mode-hook #'sdml-flycheck-mode)
-
 (provide 'flycheck-sdml)
 
 ;;; flycheck-sdml.el ends here

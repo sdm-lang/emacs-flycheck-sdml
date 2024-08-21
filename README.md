@@ -10,45 +10,30 @@ checks.
 
 ## Installing
 
-Currently the package is not published and so installation has to be done
-manually. You will also need to install the base `sdml-mode` first.
-
-### Install manually
-
-First clone the Git repository to a local path.
-
-```bash
-    git clone https://github.com/johnstonskj/emacs-flycheck-sdml.git
-```
-
-The following uses `use-package` but any equivalent package manager should work.
+Install is easiest from MELPA, here's how with `use-package`. Note the hook clause
+to ensure this minor mode is always enabled for SDML source files.
 
 ```elisp
 (use-package flycheck-sdml
   :after (flycheck sdml-mode)
-  :load-path "/path/to/repo")
-```
-
-## Usage
-
-To enable, simply ensure Flycheck mode is enabled for your buffer. Rather than
-per-buffer, you can enable this by setting `flycheck-mode` for all SDML files with
-a hook, or you can use a global flycheck mode.
-
-```elisp
-(use-package flycheck-sdml
-  :after (flycheck sdml-mode)
-  :load-path "/path/to/repo"
   :hook (sdml-mode . flycheck-mode)
 ```
 
+Or, interactively; `M-x package-install RET sdml-ispell RET`
+
 ## Contributing
 
-The packages in this repository should pass the standard package checks, including:
+This package includes an [Eldev](https://github.com/emacs-eldev/eldev) file and the following MUST be run before
+creating any PR.
 
-* `byte-compile-file`
-* `package-lint`
-* `checkdoc`
+- `eldev lint`
+- `eldev doctor`
+- `eldev package --load-before-compiling --stop-on-failure --warnings-as-errors`
+- `eldev test`
+- `eldev test --undercover auto,coveralls,merge,dontsent -U simplecov.json`
+- `eldev release -nU 9.9.9`
+
+The script [eldev-check.sh](https://gist.github.com/johnstonskj/6af5ef6866bfb1288f4962a6ba3ef418) may be useful to you if you do not have your own Eldev workflow.
 
 ## License
 

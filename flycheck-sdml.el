@@ -1,7 +1,7 @@
 ;;; flycheck-sdml.el --- Use Flycheck to run sdml-lint -*- lexical-binding: t; -*-
 
 ;; Author: Simon Johnston <johnstonskj@gmail.com>
-;; Version: 0.1.7snapshot
+;; Version: 0.1.5
 ;; Package-Requires: ((emacs "28.2") (flycheck "32") (dash "2.9.1") (sdml-mode "0.1.8"))
 ;; URL: https://github.com/johnstonskj/emacs-sdml-mode
 ;; Keywords: languages tools
@@ -24,13 +24,19 @@
 
 ;;; Commentary:
 
-;; This package provides a flycheck backend for SDML - the
-;; Simple Domain Modeling Language buffers.
+;; This package provides a Flycheck backend for SDML
+;; (Simple Domain Modeling Language) buffers.
 
 ;; Install
 ;;
+;; Install is easiest from MELPA, here's how with `use-package`. Note the hook
+;; clause to ensure this minor mode is always enabled for SDML source files.
+;;
 ;; `(use-package flycheck-sdml
-;;    :after (flycheck sdml))'
+;;   :after (flycheck sdml-mode)
+;;   :hook (sdml-mode . flycheck-mode)'
+;;
+;; Or, interactively; `M-x package-install RET sdml-ispell RET'
 ;;
 
 ;;; Code:

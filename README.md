@@ -16,7 +16,7 @@ to ensure this minor mode is always enabled for SDML source files.
 ```elisp
 (use-package flycheck-sdml
   :after (flycheck sdml-mode)
-  :hook (sdml-mode . flycheck-mode)
+  :hook (sdml-mode . flycheck-mode))
 ```
 
 Or, interactively; `M-x package-install RET sdml-ispell RET`
